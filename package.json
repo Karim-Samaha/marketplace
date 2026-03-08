@@ -1,0 +1,27 @@
+{
+  "name": "marketplace-v2",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @marketplace/client-next dev",
+    "build": "pnpm --filter @marketplace/client-next build",
+    "start": "pnpm --filter @marketplace/client-next start",
+    "lint": "pnpm --filter @marketplace/client-next lint",
+    "contracts:compile": "pnpm --filter @marketplace/smart-contract compile",
+    "contracts:test": "pnpm --filter @marketplace/smart-contract test",
+    "contracts:deploy": "pnpm --filter @marketplace/smart-contract deploy",
+    "clean": "pnpm -r exec rm -rf node_modules dist .next",
+    "install:all": "pnpm install"
+  },
+  "devDependencies": {
+    "pnpm": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "NFT Marketplace Monorepo"
+}
