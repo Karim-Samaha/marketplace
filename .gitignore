@@ -16,8 +16,6 @@ out/
 *.tsbuildinfo
 
 # Environment variables
-.env
-.env.local
 .env*.local
 
 # IDE
@@ -58,3 +56,4 @@ typechain-types/
 *.pem
 .cache/
 
+config.bat
