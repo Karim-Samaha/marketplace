@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @marketplace/store dev",
+    "dev": "node api.js && pnpm --filter @marketplace/store dev",
     "build": "pnpm --filter @marketplace/store build",
-    "start": "pnpm --filter @marketplace/store start",
+    "start": "node api.js && pnpm --filter @marketplace/store start",
     "lint": "pnpm --filter @marketplace/store lint",
     "contracts:compile": "pnpm --filter @marketplace/smart-contract compile",
     "contracts:test": "pnpm --filter @marketplace/smart-contract test",

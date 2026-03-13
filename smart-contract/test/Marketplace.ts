@@ -132,6 +132,12 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      // Create a collection to list NFTs into
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n; // first collection has id 0
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -150,7 +156,7 @@ describe("Marketplace", async function () {
       const initialSellerBalance = await myToken.read.balanceOf([seller.account.address]);
       const initialMarketplaceBalance = await myToken.read.balanceOf([marketplace.address]);
 
-      const result = await marketplace.write.listToken([priceInToken, uri], {
+      const result = await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -176,6 +182,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -191,7 +202,7 @@ describe("Marketplace", async function () {
       const uri = "https://example.com/token/1";
 
       await assert.rejects(
-        marketplace.write.listToken([priceInToken, uri], {
+        marketplace.write.listToken([collectionId, priceInToken, uri], {
           account: seller.account,
         }),
         /Approve Marketplace to spend tokens first/
@@ -205,6 +216,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -215,7 +231,7 @@ describe("Marketplace", async function () {
       const uri = "https://example.com/token/1";
 
       await assert.rejects(
-        marketplace.write.listToken([priceInToken, uri], {
+        marketplace.write.listToken([collectionId, priceInToken, uri], {
           account: seller.account,
         }),
         /Approve Marketplace to spend tokens first/
@@ -228,6 +244,11 @@ describe("Marketplace", async function () {
       await marketplace.write.setListingPrice([listingPrice], {
         account: owner.account,
       });
+
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
 
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
@@ -242,7 +263,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      const txHash = await marketplace.write.listToken([priceInToken, uri], {
+      const txHash = await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -261,6 +282,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -274,7 +300,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      const { result } = await marketplace.simulate.listToken([priceInToken, uri], {
+      const { result } = await marketplace.simulate.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -295,6 +321,12 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      // Create a collection for the listing
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -308,7 +340,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -341,6 +373,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -354,7 +391,7 @@ describe("Marketplace", async function () {
       const initialPrice = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([initialPrice, uri], {
+      await marketplace.write.listToken([collectionId, initialPrice, uri], {
         account: seller.account,
       });
 
@@ -387,6 +424,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -400,7 +442,7 @@ describe("Marketplace", async function () {
       const initialPrice = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([initialPrice, uri], {
+      await marketplace.write.listToken([collectionId, initialPrice, uri], {
         account: seller.account,
       });
 
@@ -422,6 +464,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -435,7 +482,7 @@ describe("Marketplace", async function () {
       const initialPrice = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([initialPrice, uri], {
+      await marketplace.write.listToken([collectionId, initialPrice, uri], {
         account: seller.account,
       });
 
@@ -459,6 +506,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -472,7 +524,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -508,6 +560,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -521,7 +578,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -542,6 +599,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -555,7 +617,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -580,6 +642,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to seller
       const sellerTokenAmount = parseEther("1000");
       await myToken.write.mint([seller.account.address, sellerTokenAmount], {
@@ -593,7 +660,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -616,6 +683,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -635,7 +707,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -677,6 +749,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -695,7 +772,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -720,6 +797,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -738,7 +820,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -772,6 +854,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -790,7 +877,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -824,6 +911,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -842,7 +934,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -872,6 +964,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -890,7 +987,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
@@ -923,6 +1020,11 @@ describe("Marketplace", async function () {
         account: owner.account,
       });
 
+      await marketplace.write.createCollection(["Default Collection", "Test collection"], {
+        account: owner.account,
+      });
+      const collectionId = 0n;
+
       // Mint tokens to buyer and seller
       const buyerTokenAmount = parseEther("1000");
       await myToken.write.mint([buyer.account.address, buyerTokenAmount], {
@@ -941,7 +1043,7 @@ describe("Marketplace", async function () {
       const priceInToken = parseEther("100");
       const uri = "https://example.com/token/1";
 
-      await marketplace.write.listToken([priceInToken, uri], {
+      await marketplace.write.listToken([collectionId, priceInToken, uri], {
         account: seller.account,
       });
 
